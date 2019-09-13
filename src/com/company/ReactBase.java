@@ -126,7 +126,12 @@ public class ReactBase {
     public void ShowRecords(String who, int record){}
 
     public void SaveRecords() throws IOException {
+        list.add(cas+" "+Player);
         BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+        for(String hrac : list){
+            bw.write(hrac);
+        }
+        bw.close();
     }
 
 }
