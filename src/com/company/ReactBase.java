@@ -94,8 +94,12 @@ public class ReactBase {
         }
     }
 
-    public void NewPlayer(){}
-
+    public void NewPlayer(){
+        System.out.println("Zadaj meno:");
+        Scanner scanner=new Scanner(System.in);
+        Player=scanner.nextLine();
+        System.out.println("Meno úspešne nastavené");
+    }
     public int Menu(){
         System.out.println("Vitajte v nasej reakcnej hre!");
         System.out.println("MENU");
