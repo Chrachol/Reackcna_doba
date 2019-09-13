@@ -97,7 +97,14 @@ public class ReactBase {
     public void NewPlayer(){}
 
     public int Menu(){
-        return CM_QUIT;
+        System.out.println("Vitajte v nasej reakcnej hre!");
+        System.out.println("MENU");
+        System.out.println("1. ŠTART" + "\n" + "2. NOVY HRAC" + "\n" + "3. TOP 10" + "\n" + "4. KONIEC" + "\n");
+        System.out.println("Stlacte prislusne cislo");
+        int input = 0;
+        Scanner scanner = new Scanner (System.in);
+        input = scanner.nextInt();
+        return input;
     }
 
     public int Play(String who){
