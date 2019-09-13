@@ -80,7 +80,7 @@ public class ReactBase {
 
     public void ImportRecords() throws IOException {
         ArrayList<String>list=new ArrayList<>();
-        File file=new File("F:\\skola\\Reackcna_doba\\Player_ratings");
+        File file=new File("Player_ratings.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         try {
             while (br.readLine()!=null){
