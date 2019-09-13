@@ -31,7 +31,12 @@ package com.company;
     Hra musí ošetriť aj predčasné stlačenie pred zobrazením START ako chybu a potrestať ju (spôsob trestu je na vás)
 */
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.function.BiFunction;
 
 public class ReactBase {
     final int CM_PLAY = 1;
@@ -40,7 +45,7 @@ public class ReactBase {
     final int CM_QUIT = 4;
     String Player;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         boolean gameOn;
 	    ReactBase Game = new ReactBase();
 	    do
@@ -48,7 +53,7 @@ public class ReactBase {
         while (gameOn);
     }
 
-    public ReactBase(){
+    public ReactBase() throws IOException {
         ImportRecords();
         NewPlayer();
     }
@@ -73,7 +78,21 @@ public class ReactBase {
         return true;
     }
 
-    public void ImportRecords(){}
+    public void ImportRecords() throws IOException {
+        ArrayList<String>list=new ArrayList<>();
+        File file=new File("F:\\skola\\Reackcna_doba\\Player_ratings");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        try {
+            while (br.readLine()!=null){
+            list.add(br.readLine());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            br.close();
+        }
+    }
 
     public void NewPlayer(){}
 
