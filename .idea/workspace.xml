@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21b1eca0-555d-432a-8299-26e8de301926" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player_ratings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Player_ratings.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/ReactBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ReactBase.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

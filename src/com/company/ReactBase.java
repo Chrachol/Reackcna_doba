@@ -32,9 +32,11 @@ package com.company;
 */
 
 import sun.security.jgss.GSSCaller;
+import sun.security.krb5.SCDynamicStoreConfig;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 
 public class ReactBase {
@@ -118,6 +120,27 @@ public class ReactBase {
     }
 
     public int Play(String who){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ak si pripraveny stlac ENTER!");
+        scanner.nextLine();
+
+        int time = (int) (Math.random()*2500+500);
+        System.out.println("Pozoor...");
+
+        try {
+            TimeUnit.MILLISECONDS.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("START!");
+        double before = System.currentTimeMillis();
+        scanner.nextLine();
+        double after = System.currentTimeMillis();
+
+        System.out.println("Cas: " + (after - before) +"ms");
+
         return Integer.MAX_VALUE;
     }
 
