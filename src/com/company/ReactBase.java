@@ -31,11 +31,10 @@ package com.company;
     Hra musí ošetriť aj predčasné stlačenie pred zobrazením START ako chybu a potrestať ju (spôsob trestu je na vás)
 */
 
+import sun.security.jgss.GSSCaller;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.function.BiFunction;
 
 public class ReactBase {
@@ -44,6 +43,7 @@ public class ReactBase {
     final int CM_TOP10 = 3;
     final int CM_QUIT = 4;
     String Player;
+    double cas;
 
     public static void main(String[] args) throws IOException {
         boolean gameOn;
@@ -101,14 +101,20 @@ public class ReactBase {
         System.out.println("Meno úspešne nastavené");
     }
     public int Menu(){
+        int input = 0;
+        Scanner scanner = null;
         System.out.println("Vitajte v nasej reakcnej hre!");
         System.out.println("MENU");
         System.out.println("1. ŠTART" + "\n" + "2. NOVY HRAC" + "\n" + "3. TOP 10" + "\n" + "4. KONIEC" + "\n");
         System.out.println("Stlacte prislusne cislo");
-        int input = 0;
-        Scanner scanner = new Scanner (System.in);
-        input = scanner.nextInt();
-        return input;
+        try{
+            scanner = new Scanner(System.in);
+            input = scanner.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Zadali ste neplatny znak!");
+        }finally {
+            return input;
+        }
     }
 
     public int Play(String who){
