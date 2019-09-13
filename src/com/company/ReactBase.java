@@ -44,6 +44,8 @@ public class ReactBase {
     final int CM_QUIT = 4;
     String Player;
     double cas;
+    ArrayList<String>list=new ArrayList<>();
+    File file=new File("Player_ratings.txt");
 
     public static void main(String[] args) throws IOException {
         boolean gameOn;
@@ -58,7 +60,7 @@ public class ReactBase {
         NewPlayer();
     }
 
-    public boolean Run(){
+    public boolean Run() throws IOException {
         switch(Menu()){
             case CM_CHANGE_PLAYER:
                 NewPlayer();
@@ -79,8 +81,6 @@ public class ReactBase {
     }
 
     public void ImportRecords() throws IOException {
-        ArrayList<String>list=new ArrayList<>();
-        File file=new File("Player_ratings.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         try {
             while (br.readLine()!=null){
@@ -125,6 +125,8 @@ public class ReactBase {
 
     public void ShowRecords(String who, int record){}
 
-    public void SaveRecords(){}
+    public void SaveRecords() throws IOException {
+        BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+    }
 
 }
