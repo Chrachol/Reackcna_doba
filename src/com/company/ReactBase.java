@@ -127,32 +127,39 @@ public class ReactBase {
 
         int time = (int) (Math.random()*2500+500);
         System.out.println("Pozoor...");
-
         try {
             TimeUnit.MILLISECONDS.sleep(time);
+            System.out.println("START!");
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println("START!");
         double before = System.currentTimeMillis();
         scanner.nextLine();
         double after = System.currentTimeMillis();
+        cas=after-before;
 
-        System.out.println("Cas: " + (after - before) +"ms");
+        System.out.println("Cas: " + (cas) +"ms");
 
         return Integer.MAX_VALUE;
     }
 
     public void Sort(String who, int record){}
 
-    public void ShowRecords(String who, int record){}
+    public void ShowRecords(String who, int record){
+        for (String hrac:list){
+            System.out.println(hrac);
+        }
+    }
 
     public void SaveRecords() throws IOException {
-        list.add(cas+" "+Player);
+        list.add(this.cas +" "+Player);
         BufferedWriter bw=new BufferedWriter(new FileWriter(file));
         for(String hrac : list){
-            bw.write(hrac);
+            if (hrac!=null){
+                bw.write(hrac);
+                bw.newLine();
+            }
         }
         bw.close();
     }
