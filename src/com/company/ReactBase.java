@@ -106,6 +106,7 @@ public class ReactBase {
         Player=scanner.nextLine();
         System.out.println("Meno úspešne nastavené");
     }
+
     public int Menu(){
         int input = 0;
         Scanner scanner = null;
@@ -138,6 +139,7 @@ public class ReactBase {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         double before = System.currentTimeMillis();
         scanner.nextLine();
         double after = System.currentTimeMillis();
@@ -152,29 +154,26 @@ public class ReactBase {
     }
 
     public void Sort(Record record){
-        list.add(record);
-
-        Collections.sort(list, new CustomComparator());
-
-
+        if(cas > 0){
+            list.add(record);
+            Collections.sort(list, new CustomComparator());
+        }
     }
 
     public void ShowRecords(Record record){
 
-        int index = list.indexOf(record);
+        if(cas > 0){
+            int index = list.indexOf(record);
 
-        if(index - 5 >= 0){
-            for(int i = (index - 5); i < (index+5); i++){
-                list.get(i).toString();
+            if(index - 5 >= 0){
+                for(int i = (index - 5); i < (index+5); i++){
+                    System.out.println(list.get(i).toString());
+                }
+            }else {
+                for (Record item : list) {
+                    System.out.println(item.toString());
+                }
             }
-        }else {
-            for (Record item : list) {
-                item.toString();
-            }
-        }
-
-        for (Record item : list){
-            System.out.println(item.toString());
         }
     }
 
@@ -192,9 +191,8 @@ public class ReactBase {
 
     public void ShowTop(){
         for (int i = 0; i < 10; i ++){
-            Record record = null;
-            if((record = list.get(i)) != null)
-                record.toString();
+            if(i < list.size())
+                System.out.println(list.get(i).toString());;
         }
     }
 
