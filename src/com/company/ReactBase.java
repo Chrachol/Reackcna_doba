@@ -31,22 +31,24 @@ package com.company;
     Hra musí ošetriť aj predčasné stlačenie pred zobrazením START ako chybu a potrestať ju (spôsob trestu je na vás)
 */
 
+import com.sun.org.apache.xml.internal.dtm.ref.sax2dtm.SAX2DTM2;
 import sun.security.jgss.GSSCaller;
 import sun.security.krb5.SCDynamicStoreConfig;
 
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.function.BiFunction;
 
 public class ReactBase {
     final int CM_PLAY = 1;
     final int CM_CHANGE_PLAYER = 2;
     final int CM_TOP10 = 3;
     final int CM_QUIT = 4;
+
     String Player;
     double cas;
-    ArrayList<String>list=new ArrayList<>();
+
+    ArrayList<Record>list=new ArrayList<>();
     File file=new File("Player_ratings.txt");
 
     public static void main(String[] args) throws IOException {
@@ -68,13 +70,13 @@ public class ReactBase {
                 NewPlayer();
                 return true;
             case CM_PLAY:
-                int LastTime = Play(Player);
-                Sort(Player, LastTime);
-                ShowRecords(Player, LastTime);
+                Double LastTime = Play(Player);
+                Sort(new Record(Player, LastTime));
+                ShowRecords(new Record(Player, LastTime));
                 SaveRecords();
                 return true;
             case CM_TOP10:
-                ShowRecords("", 0);
+                ShowTop();
                 return true;
             case CM_QUIT:
                 return false;
@@ -85,8 +87,10 @@ public class ReactBase {
     public void ImportRecords() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         try {
-            while (br.readLine()!=null){
-            list.add(br.readLine());
+            String line;
+            while ((line = br.readLine()) != null){
+                String[] tempArray = line.split(":");
+                list.add(new Record(tempArray[1], Double.parseDouble(tempArray[0])));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -119,7 +123,7 @@ public class ReactBase {
         }
     }
 
-    public int Play(String who){
+    public Double Play(String who){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Ak si pripraveny stlac ENTER!");
@@ -139,29 +143,59 @@ public class ReactBase {
         double after = System.currentTimeMillis();
         cas=after-before;
 
-        System.out.println("Cas: " + (cas) +"ms");
+        if(cas <= 0)
+            System.out.println("PODVADZAL SI");
+        else
+            System.out.println("Cas: " + (cas) +"ms");
 
-        return Integer.MAX_VALUE;
+        return cas;
     }
 
-    public void Sort(String who, int record){}
+    public void Sort(Record record){
+        list.add(record);
 
-    public void ShowRecords(String who, int record){
-        for (String hrac:list){
-            System.out.println(hrac);
+        Collections.sort(list, new CustomComparator());
+
+
+    }
+
+    public void ShowRecords(Record record){
+
+        int index = list.indexOf(record);
+
+        if(index - 5 >= 0){
+            for(int i = (index - 5); i < (index+5); i++){
+                list.get(i).toString();
+            }
+        }else {
+            for (Record item : list) {
+                item.toString();
+            }
+        }
+
+        for (Record item : list){
+            System.out.println(item.toString());
         }
     }
 
     public void SaveRecords() throws IOException {
-        list.add(this.cas +" "+Player);
-        BufferedWriter bw=new BufferedWriter(new FileWriter(file));
-        for(String hrac : list){
-            if (hrac!=null){
-                bw.write(hrac);
-                bw.newLine();
+        if(cas > 0){
+            BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+            for(Record record : list){
+                if (record!=null){
+                    bw.write(record.getTime() + ":" + record.getName() + "\n");
+                }
             }
+            bw.close();
         }
-        bw.close();
+    }
+
+    public void ShowTop(){
+        for (int i = 0; i < 10; i ++){
+            Record record = null;
+            if((record = list.get(i)) != null)
+                record.toString();
+        }
     }
 
 }

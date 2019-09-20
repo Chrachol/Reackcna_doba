@@ -1,2 +1,6 @@
-470.0 Bogi
-553.0 Dominik
+156.0:Dominik
+445.0:Seb
+469.0:Smalo
+516.0:jOZEFINKA
+565.0:Bogi
+999.0:Kata
