@@ -1,1 +1,14 @@
-615.0:Dominik
+538.0:Dominik
+619.0:Dominik
+630.0:Dominik
+988.0:Dominik
+1029.0:Dominik
+1430.0:Dominik
+1666.0:Fero
+2166.0:Dominik
+2592.0:Smalo
+3607.0:Dominik
+3999.0:Dominik
+4326.0:Dominik
+4451.0:Dominik
+6033.0:Dominik

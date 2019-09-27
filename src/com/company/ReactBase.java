@@ -162,16 +162,26 @@ public class ReactBase {
 
     public void ShowRecords(Record record){
 
+        int index;
+
         if(cas > 0){
-            int index = list.indexOf(record);
+            for (index = 0; index < list.size(); index++){
+                if(list.get(index).getName().equals(record.getName()))
+                    if(list.get(index).getTime().equals(record.getTime()))
+                        break;
+            }
 
             if(index - 5 >= 0){
-                for(int i = (index - 5); i < (index+5); i++){
+                for(int i = (index - 5); i <= (index+5); i++){
                     System.out.println(list.get(i).toString());
                 }
-            }else {
+            }else if (list.size() <= 10){
                 for (Record item : list) {
                     System.out.println(item.toString());
+                }
+            }else{
+                for (int i =0; i <= (index + 5); i++){
+                    System.out.println(list.get(i).toString());
                 }
             }
         }
